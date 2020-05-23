@@ -37,21 +37,24 @@ server.post('/auth/login', async (req, res) => {
 
 		console.log(indexParticipant);
 
+		let type;
 		if (indexParticipant !== -1) {
 			user = dbJson.participant[indexParticipant];
+			type = 'PARTICIPANT';
 		} else {
 			const indexTeacher = dbJson.teacher.findIndex(
 				(t) => t.email === email
 			);
 			if (indexTeacher !== -1) {
 				user = dbJson.teacher[indexParticipant];
+				type = 'TEACHER';
 			}
 		}
 
 		delete user.password;
 
 		const token = createToken({ email, password });
-		res.status(200).json({ token, user });
+		res.status(200).json({ token, user, type });
 	});
 });
 
