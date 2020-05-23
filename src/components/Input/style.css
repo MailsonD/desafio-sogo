@@ -1,0 +1,8 @@
+.input-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 7vh;
+    background-color: red;
+    margin: 0 10px
+}
