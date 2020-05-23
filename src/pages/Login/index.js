@@ -2,8 +2,15 @@ import React from 'react';
 
 import './style.css';
 
+import Form from './Form';
+
 function Login() {
-	return <div>Login Page</div>;
+	return (
+		<div>
+			<p>Login Page</p>
+			<Form />
+		</div>
+	);
 }
 
 export default Login;

@@ -3,6 +3,20 @@
     flex-direction: column;
     justify-content: space-between;
     height: 7vh;
-    background-color: red;
-    margin: 0 10px
+    margin: 0 10px;
+    border: 0
+}
+
+.input-title {
+    font-size: 15px;
+}
+
+.input {
+    margin-top: 5px;
+    box-sizing: border-box;
+	border: 1px solid #0466C8;
+	border-radius: 3px;
+	box-shadow: 1px 1px 4px #EBEBEB;
+	padding: 7px;
+	outline: none;
 }
