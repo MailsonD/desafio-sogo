@@ -1,0 +1,27 @@
+{
+    "users": [
+        {
+            "id": 1,
+            "name": "Mailson",
+            "email": "mailson@gmail.com",
+            "password": "123"
+        },
+        {
+            "id": 2,
+            "name": "Dennis",
+            "email": "dennis@gmail.com",
+            "password": "321"
+        },
+        {
+            "id": 3,
+            "name": "Ricardo Job",
+            "email": "ricardo.job@gmail.com",
+            "password": "jobiando"
+        },
+        {
+            "id": 4,
+            "email": "irineu@gmail.com",
+            "password": "321"
+        }
+    ]
+}
