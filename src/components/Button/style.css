@@ -3,6 +3,7 @@
     border: 0;
     color: white;
     background-color: #023E7D;
+    box-shadow: 1px 1px 4px #b5b5b5;
     height: 38px;
     padding: 0 30px;
 }
