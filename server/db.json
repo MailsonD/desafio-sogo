@@ -49,6 +49,12 @@
             "name": "Irineu",
             "email": "irineu@gmail.com",
             "password": "321"
+        },
+        {
+            "id": 4,
+            "email": "marcos@gmail.com",
+            "name": "Marcos",
+            "password": "123"
         }
     ]
 }

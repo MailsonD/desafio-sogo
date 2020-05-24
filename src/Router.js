@@ -19,7 +19,7 @@ function Router() {
 				<Route
 					path='/register'
 					exact
-					compoennt={Register}
+					component={Register}
 				/>
 
 				<Route

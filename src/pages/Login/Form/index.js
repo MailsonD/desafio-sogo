@@ -59,14 +59,6 @@ function Form() {
 			<br />
 			<Button
 				onClick={() => {
-					dispatch({
-						type: 'NEW_TEST',
-						value: 'saaasd',
-					});
-				}}
-			/>
-			<Button
-				onClick={() => {
 					console.log(state);
 				}}
 			/>

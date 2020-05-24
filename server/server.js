@@ -35,20 +35,20 @@ server.post('/api/v1/auth/login', async (req, res) => {
 
 		console.log(indexParticipant);
 
-		let type;
+		let role;
 		if (indexParticipant !== -1) {
-			type = 'PARTICIPANT';
+			role = 'PARTICIPANT';
 		} else {
 			const indexTeacher = dbJson.teacher.findIndex(
 				(t) => t.email === email
 			);
 			if (indexTeacher !== -1) {
-				type = 'TEACHER';
+				role = 'TEACHER';
 			}
 		}
 
 		const token = createToken({ email, password });
-		res.status(200).json({ token, type });
+		res.status(200).json({ token, role });
 	});
 });
 
@@ -106,6 +106,8 @@ server.post('/api/v1/auth/register', (req, res) => {
 
 	let failed = false;
 
+	let role;
+
 	fs.readFile('./server/db.json', (err, data) => {
 		if (err) {
 			unauthorized(res, err);
@@ -127,6 +129,8 @@ server.post('/api/v1/auth/register', (req, res) => {
 			});
 
 			dbJson.teacher = dataArray;
+
+			role = 'TEACHER';
 		} else {
 			dataArray = dbJson.participant;
 			last_item_id = dataArray[dataArray.length - 1].id;
@@ -137,6 +141,8 @@ server.post('/api/v1/auth/register', (req, res) => {
 			});
 
 			dbJson.participant = dataArray;
+
+			role = 'PARTICIPANT';
 		}
 
 		fs.writeFile(
@@ -194,7 +200,7 @@ server.post('/api/v1/auth/register', (req, res) => {
 	// Create token for new user
 	const access_token = createToken({ email, password });
 	console.log('Access Token:' + access_token);
-	res.status(200).json({ access_token });
+	res.status(200).json({ access_token, role });
 });
 
 server.use(/^(?!\/api\/v1\/auth).*$/, (req, res, next) => {
