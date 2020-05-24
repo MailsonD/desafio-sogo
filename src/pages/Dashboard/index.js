@@ -1,6 +1,7 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import DashboardRoutes from './routes';
 import Button from '../../components/Button';
+import { useDispatch } from 'react-redux';
 import { logoutUser } from '../../store/Auth/auth.actions';
 
 function Dashboard() {
@@ -12,8 +13,8 @@ function Dashboard() {
 
 	return (
 		<div>
-			<p>Dashboard</p>
 			<Button onClick={handleLogout}>Logout</Button>
+			<DashboardRoutes />
 		</div>
 	);
 }

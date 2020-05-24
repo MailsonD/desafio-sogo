@@ -15,12 +15,8 @@ function Router() {
 	return (
 		<BrowserRouter>
 			<Switch>
-				<Route path='/login' exact component={Login} />
-				<Route
-					path='/register'
-					exact
-					component={Register}
-				/>
+				<Route path='/login' component={Login} />
+				<Route path='/register' component={Register} />
 
 				<Route
 					path='/'

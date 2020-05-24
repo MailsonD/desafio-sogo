@@ -5,21 +5,45 @@
             "name": "React Native",
             "realization_date": "2020-08-20 15:45:00",
             "duration": "3 hours 20 minutes",
-            "vacancies": 30
+            "vacancies": 30,
+            "registrations": [
+                {
+                    "id": 2
+                },
+                {
+                    "id": 4
+                }
+            ],
+            "teacher": 1
         },
         {
             "id": 2,
             "name": "Redux",
             "realization_date": "2020-08-22 15:45:00",
             "duration": "1 hours 15 minutes",
-            "vacancies": 30
+            "vacancies": 30,
+            "registrations": [
+                {
+                    "id": 4
+                }
+            ],
+            "teacher": 1
         },
         {
             "id": 3,
             "name": "React Router",
             "realization_date": "2020-08-22 17:00:00",
             "duration": "3 hours",
-            "vacancies": 30
+            "vacancies": 30,
+            "registrations": [
+                {
+                    "id": 3
+                },
+                {
+                    "id": 4
+                }
+            ],
+            "teacher": 2
         }
     ],
     "teacher": [
