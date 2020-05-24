@@ -26,8 +26,6 @@ server.post('/auth/login', async (req, res) => {
 		res.status(status).json({ status, message });
 		return;
 	}
-
-	let user;
 	fs.readFile('./server/db.json', (err, data) => {
 		var dbJson = JSON.parse(data.toString());
 
@@ -39,14 +37,12 @@ server.post('/auth/login', async (req, res) => {
 
 		let type;
 		if (indexParticipant !== -1) {
-			user = dbJson.participant[indexParticipant];
 			type = 'PARTICIPANT';
 		} else {
 			const indexTeacher = dbJson.teacher.findIndex(
 				(t) => t.email === email
 			);
 			if (indexTeacher !== -1) {
-				user = dbJson.teacher[indexParticipant];
 				type = 'TEACHER';
 			}
 		}
@@ -54,7 +50,7 @@ server.post('/auth/login', async (req, res) => {
 		delete user.password;
 
 		const token = createToken({ email, password });
-		res.status(200).json({ token, user, type });
+		res.status(200).json({ token, type });
 	});
 });
 
