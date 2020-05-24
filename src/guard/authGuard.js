@@ -8,14 +8,10 @@ function AuthGuard(props) {
 	const history = useHistory();
 
 	useEffect(() => {
-		checkAuth();
-	}, []);
-
-	function checkAuth() {
 		if (!auth.isAuthenticated) {
 			history.push('/login');
 		}
-	}
+	}, [auth.isAuthenticated]);
 
 	return (
 		<div>{auth.isAuthenticated && props.children}</div>

@@ -9,6 +9,7 @@ import AuthRequired from './guard/authGuard';
 
 import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
+import Register from './pages/Register';
 
 function Router() {
 	return (
@@ -16,10 +17,17 @@ function Router() {
 			<Switch>
 				<Route path='/login' exact component={Login} />
 				<Route
+					path='/register'
+					exact
+					compoennt={Register}
+				/>
+
+				<Route
 					path='/'
 					exact
 					render={() => <Redirect to='/login' />}
 				/>
+
 				<Route
 					path='/dashboard'
 					component={AuthRequired(Dashboard)}

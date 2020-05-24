@@ -6,15 +6,19 @@ import './style.css';
 import { useFormik } from 'formik';
 import { useSelector, useDispatch } from 'react-redux';
 import { loginUser } from '../../../store/Auth/auth.actions';
+import { Link, useHistory } from 'react-router-dom';
 
 function Form() {
 	const dispatch = useDispatch();
+	const history = useHistory();
 	const auth = useSelector((state) => state.auth);
 	const state = useSelector((state) => state);
 
 	useEffect(() => {
-		console.log(state);
-	}, []);
+		if (auth.isAuthenticated) {
+			history.push('dashboard');
+		}
+	}, [auth.isAuthenticated]);
 
 	const formik = useFormik({
 		initialValues: {
@@ -50,6 +54,8 @@ function Form() {
 				/>
 				<Button type='submit'>Login</Button>
 			</form>
+			<br />
+			<Link to='/register'>Cadastro</Link>
 			<br />
 			<Button
 				onClick={() => {
