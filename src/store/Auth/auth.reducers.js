@@ -1,4 +1,4 @@
-import * as createReducer from '../util/create-reducer';
+import { createReducer } from '../util/create-reducer';
 import {
 	LOGIN_FAILED,
 	LOGIN_SUCCESS,
@@ -14,7 +14,7 @@ const initialState = {
 	error: null,
 };
 
-createReducer(initialState, {
+export default createReducer(initialState, {
 	[LOGIN_SUCCESS]: loginSuccess,
 	[LOGIN_FAILED]: loginFailed,
 	[LOGIN_REQUEST]: loginRequest,

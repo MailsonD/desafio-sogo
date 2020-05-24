@@ -23,7 +23,10 @@ function AuthGuard(props) {
 }
 
 function authRequired(component) {
-	return <AuthGuard private={component} />;
+	const AuthRequired = () => (
+		<AuthGuard private={component} />
+	);
+	return AuthRequired;
 }
 
 export default authRequired;

@@ -1,23 +1,41 @@
+import api from '../../services/api';
+
 const LOGIN_REQUEST = 'LOGIN_REQUEST';
 const LOGIN_FAILED = 'LOGIN_FAILED';
 const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 const LOGOUT_REQUEST = 'LOGOUT_REQUEST';
 
-export function loginRequest(email, password) {
-	const user = { email, password };
-	return { type: LOGIN_REQUEST, user };
+export function loginRequest() {
+	return { type: LOGIN_REQUEST };
 }
 
 export function loginFailed(message) {
+	localStorage.removeItem('token');
 	return { type: LOGIN_FAILED, message };
 }
 
 export function loginSuccess(authInfo) {
+	localStorage.setItem('token', authInfo.token);
 	return { type: LOGIN_SUCCESS, authInfo };
 }
 
 export function logoutRequest() {
+	localStorage.removeItem('token');
 	return { type: LOGOUT_REQUEST };
+}
+
+export function loginUser(email, password) {
+	return function (dispatch) {
+		dispatch(loginRequest());
+		api
+			.post('/auth/login', { email, password })
+			.then((res) => {
+				dispatch(loginSuccess(res.data));
+			})
+			.catch((err) => {
+				dispatch(loginFailed(err.message));
+			});
+	};
 }
 
 export {

@@ -1,13 +1,17 @@
 import React from 'react';
 import Router from './Router';
+import { Provider } from 'react-redux';
+import store from './store';
 
 import './global.css';
 
 function App() {
 	return (
-		<div class='main'>
-			<Router />
-		</div>
+		<Provider store={store}>
+			<div className='main'>
+				<Router />
+			</div>
+		</Provider>
 	);
 }
 

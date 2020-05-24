@@ -3,8 +3,9 @@ import {
 	BrowserRouter,
 	Route,
 	Switch,
+	Redirect,
 } from 'react-router-dom';
-import authRequired from './guard/authGuard';
+import AuthRequired from './guard/authGuard';
 
 import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
@@ -13,10 +14,14 @@ function Router() {
 	return (
 		<BrowserRouter>
 			<Switch>
-				<Route path='/' exact component={Login} />
+				<Route path='/login' exact component={Login} />
+				<Route
+					path='/'
+					render={() => <Redirect to='/login' />}
+				/>
 				<Route
 					path='/dashboard'
-					component={authRequired(Dashboard)}
+					component={AuthRequired(Dashboard)}
 				/>
 			</Switch>
 		</BrowserRouter>

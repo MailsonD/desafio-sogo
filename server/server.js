@@ -18,7 +18,7 @@ server.use(jsonServer.defaults());
 server.use(bodyParser.urlencoded({ extended: true }));
 server.use(bodyParser.json());
 
-server.post('/auth/login', async (req, res) => {
+server.post('api/v1/auth/login', async (req, res) => {
 	const { email, password } = req.body;
 	if (isAuthenticated({ email, password }) === false) {
 		const status = 401;
@@ -46,8 +46,6 @@ server.post('/auth/login', async (req, res) => {
 				type = 'TEACHER';
 			}
 		}
-
-		delete user.password;
 
 		const token = createToken({ email, password });
 		res.status(200).json({ token, type });
@@ -83,7 +81,7 @@ function unauthorized(res, err) {
 }
 
 // Register New User
-server.post('/auth/register', (req, res) => {
+server.post('api/v1/auth/register', (req, res) => {
 	console.log('register endpoint called; request body:');
 	const { email, password } = req.body;
 
@@ -218,7 +216,7 @@ server.use(/^(?!\/auth).*$/, (req, res, next) => {
 	}
 });
 
-server.use('/api', router);
+server.use('/api/v1', router);
 
 server.listen(8080, () => {
 	console.log('Run Auth API Server');
