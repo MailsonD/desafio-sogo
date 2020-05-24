@@ -17,6 +17,7 @@ function Router() {
 				<Route path='/login' exact component={Login} />
 				<Route
 					path='/'
+					exact
 					render={() => <Redirect to='/login' />}
 				/>
 				<Route

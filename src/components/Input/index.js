@@ -7,6 +7,9 @@ function Input(props) {
 		<div className='input-box'>
 			<span className='input-title'>{props.title}</span>
 			<input className='input' {...props} />
+			{props.error && (
+				<span className='error-message'>{props.error}</span>
+			)}
 		</div>
 	);
 }

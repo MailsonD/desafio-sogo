@@ -14,7 +14,7 @@ const initialState = {
 	error: null,
 };
 
-export default createReducer(initialState, {
+export const auth = createReducer(initialState, {
 	[LOGIN_SUCCESS]: loginSuccess,
 	[LOGIN_FAILED]: loginFailed,
 	[LOGIN_REQUEST]: loginRequest,
@@ -22,9 +22,10 @@ export default createReducer(initialState, {
 });
 
 function loginSuccess(state, action) {
+	console.log('success');
 	return {
-		token: action.auth.token,
-		type: action.auth.type,
+		token: action.authInfo.token,
+		type: action.authInfo.type,
 		isAuthenticated: true,
 		isAuthenticating: false,
 		error: null,
@@ -32,14 +33,17 @@ function loginSuccess(state, action) {
 }
 
 function loginFailed(state, action) {
+	console.log('error');
+
 	return {
 		...state,
 		isAuthenticating: false,
-		error: action.auth.error,
+		error: action.errorMessage,
 	};
 }
 
 function loginRequest(state, action) {
+	console.log('request');
 	return {
 		...state,
 		isAuthenticating: true,

@@ -9,9 +9,9 @@ export function loginRequest() {
 	return { type: LOGIN_REQUEST };
 }
 
-export function loginFailed(message) {
+export function loginFailed(errorMessage) {
 	localStorage.removeItem('token');
-	return { type: LOGIN_FAILED, message };
+	return { type: LOGIN_FAILED, errorMessage };
 }
 
 export function loginSuccess(authInfo) {
@@ -27,7 +27,7 @@ export function logoutRequest() {
 export function loginUser(email, password) {
 	return function (dispatch) {
 		dispatch(loginRequest());
-		api
+		return api
 			.post('/auth/login', { email, password })
 			.then((res) => {
 				dispatch(loginSuccess(res.data));

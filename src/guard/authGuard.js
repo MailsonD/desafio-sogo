@@ -18,13 +18,15 @@ function AuthGuard(props) {
 	}
 
 	return (
-		<div>{auth.isAuthenticated ? props.private : null}</div>
+		<div>{auth.isAuthenticated && props.children}</div>
 	);
 }
 
-function authRequired(component) {
+function authRequired(Component) {
 	const AuthRequired = () => (
-		<AuthGuard private={component} />
+		<AuthGuard>
+			<Component />
+		</AuthGuard>
 	);
 	return AuthRequired;
 }

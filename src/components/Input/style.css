@@ -3,7 +3,7 @@
     flex-direction: column;
     justify-content: space-between;
     height: 7vh;
-    margin: 0 10px;
+    margin: 25px 10px;
     border: 0
 }
 
@@ -19,4 +19,10 @@
 	box-shadow: 1px 1px 4px #b5b5b5;
 	padding: 7px;
 	outline: none;
+}
+
+.error-message {
+    margin-top: 3px;
+    color: #C60303;
+    font-size: 13px;
 }

@@ -18,7 +18,7 @@ server.use(jsonServer.defaults());
 server.use(bodyParser.urlencoded({ extended: true }));
 server.use(bodyParser.json());
 
-server.post('api/v1/auth/login', async (req, res) => {
+server.post('/api/v1/auth/login', async (req, res) => {
 	const { email, password } = req.body;
 	if (isAuthenticated({ email, password }) === false) {
 		const status = 401;
@@ -52,19 +52,16 @@ server.post('api/v1/auth/login', async (req, res) => {
 	});
 });
 
-// Create a token from a payload
 function createToken(payload) {
 	return jwt.sign(payload, SECRET_KEY, { expiresIn });
 }
 
-// Verify the token
 function verifyToken(token) {
 	return jwt.verify(token, SECRET_KEY, (err, decode) =>
 		decode !== undefined ? decode : err
 	);
 }
 
-// Check if the user exists in database
 function isAuthenticated({ email, password }) {
 	return (
 		userdb.users.findIndex(
@@ -81,7 +78,7 @@ function unauthorized(res, err) {
 }
 
 // Register New User
-server.post('api/v1/auth/register', (req, res) => {
+server.post('/api/v1/auth/register', (req, res) => {
 	console.log('register endpoint called; request body:');
 	const { email, password } = req.body;
 
@@ -200,7 +197,7 @@ server.post('api/v1/auth/register', (req, res) => {
 	res.status(200).json({ access_token });
 });
 
-server.use(/^(?!\/auth).*$/, (req, res, next) => {
+server.use(/^(?!\/api\/v1\/auth).*$/, (req, res, next) => {
 	if (
 		req.headers.authorization === undefined ||
 		req.headers.authorization.split(' ')[0] !== 'Bearer'
