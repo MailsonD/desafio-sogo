@@ -53,8 +53,14 @@ export function loginUser(email, password) {
 }
 
 export function logoutUser() {
-	localStorage.clear();
-	return { type: LOGOUT_REQUEST };
+	return function (dispatch) {
+		toastr.confirm('Deseja realmente sair?', {
+			onOk: () => {
+				localStorage.clear();
+				dispatch({ type: LOGOUT_REQUEST });
+			},
+		});
+	};
 }
 
 export function registerParticipant(participant) {
