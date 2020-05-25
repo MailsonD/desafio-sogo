@@ -8,6 +8,7 @@ import {
 	NEW_COURSES_SUCCESS,
 	NEW_COURSES_FAILED,
 } from './course.constants';
+import { formatIntervalFromDate } from '../../util/interval-format';
 
 export function fetchTeacherCourses() {
 	const token = localStorage.getItem('token');
@@ -47,10 +48,21 @@ export function fetchTeacherCourses() {
 
 export function newCourse(course) {
 	const token = localStorage.getItem('token');
+	console.log('epa');
 	return function (dispatch, getState) {
+		console.log('opa');
 		dispatch({ type: NEW_COURSES_REQUEST });
+		console.log('apa');
 		const { id } = getState().auth;
-		const courseData = { ...course, teacher: id };
+		const courseData = {
+			...course,
+			teacher: id,
+			duration: formatIntervalFromDate(
+				course.realization_date,
+				course.duration
+			),
+		};
+		console.log(courseData);
 		api
 			.post('minicourse', courseData, {
 				headers: {
