@@ -18,6 +18,7 @@ import {
 export function loginUser(email, password) {
 	return function (dispatch) {
 		dispatch(loginRequest());
+
 		return api
 			.post('/auth/login', { email, password })
 			.then((res) => {
@@ -35,8 +36,18 @@ export function loginUser(email, password) {
 				);
 			})
 			.catch((err) => {
-				toastr.error('Uma falha ocorreu :(', err.message);
-				dispatch(loginFailed(err.message));
+				if (err.response && err.response.data) {
+					toastr.error(
+						'Uma falha ocorreu :(',
+						err.response.data.message
+					);
+				} else {
+					toastr.error(
+						'Uma falha ocorreu :(',
+						'Tente novamente depois'
+					);
+				}
+				dispatch(loginFailed());
 			});
 	};
 }
@@ -67,7 +78,17 @@ export function registerParticipant(participant) {
 				);
 			})
 			.catch((err) => {
-				toastr.error('Uma falha ocorreu :(', err.message);
+				if (err.response && err.response.data) {
+					toastr.error(
+						'Uma falha ocorreu :(',
+						err.response.data.message
+					);
+				} else {
+					toastr.error(
+						'Uma falha ocorreu :(',
+						'Tente novamente depois'
+					);
+				}
 				dispatch(registerParticipantFailed(err.message));
 			});
 	};
@@ -81,9 +102,9 @@ function loginRequest() {
 	return { type: LOGIN_REQUEST };
 }
 
-function loginFailed(errorMessage) {
+function loginFailed() {
 	localStorage.removeItem('token');
-	return { type: LOGIN_FAILED, errorMessage };
+	return { type: LOGIN_FAILED };
 }
 
 function loginSuccess(authInfo) {

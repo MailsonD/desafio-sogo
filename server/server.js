@@ -18,12 +18,10 @@ server.use(jsonServer.defaults());
 server.use(bodyParser.urlencoded({ extended: true }));
 server.use(bodyParser.json());
 
-server.post('/api/v1/auth/login', async (req, res) => {
+server.post('/api/v1/auth/login', (req, res) => {
 	const { email, password } = req.body;
-	if (isAuthenticated({ email, password }) === false) {
-		const status = 401;
-		const message = 'Incorrect email or password';
-		res.status(status).json({ status, message });
+	if (!isAuthenticated({ email, password })) {
+		unauthorized(res, 'Email ou senha incorretos');
 		return;
 	}
 	fs.readFile('./server/db.json', (err, data) => {
@@ -64,12 +62,19 @@ function verifyToken(token) {
 		decode !== undefined ? decode : err
 	);
 }
-
 function isAuthenticated({ email, password }) {
 	return (
 		userdb.users.findIndex(
 			(user) =>
 				user.email === email && user.password === password
+		) !== -1
+	);
+}
+
+function isAlredyExists(email) {
+	return (
+		userdb.users.findIndex(
+			(user) => user.email === email
 		) !== -1
 	);
 }
@@ -85,8 +90,11 @@ server.post('/api/v1/auth/register', (req, res) => {
 	console.log('register endpoint called; request body:');
 	const { email, password } = req.body;
 
-	if (isAuthenticated({ email, password }) === true) {
-		unauthorized(res, 'Email and Password already exist');
+	if (isAlredyExists(email)) {
+		unauthorized(
+			res,
+			'O email informado já está cadastrado'
+		);
 		return;
 	}
 
@@ -95,14 +103,17 @@ server.post('/api/v1/auth/register', (req, res) => {
 			req.headers.authorization === undefined ||
 			req.headers.authorization.split(' ')[0] !== 'Bearer'
 		) {
-			unauthorized(res, 'Bad authorization header');
+			unauthorized(
+				res,
+				'Você não tem permissão para esta ação!'
+			);
 			return;
 		}
 		try {
 			verifyToken(req.headers.authorization.split(' ')[1]);
 		} catch (err) {
 			const status = 401;
-			const message = 'Error: access_token is not valid';
+			const message = 'Token de acesso inválido';
 			res.status(status).json({ status, message });
 		}
 	}
@@ -211,14 +222,17 @@ server.use(/^(?!\/api\/v1\/auth).*$/, (req, res, next) => {
 		req.headers.authorization === undefined ||
 		req.headers.authorization.split(' ')[0] !== 'Bearer'
 	) {
-		unauthorized(res, 'Bad authorization header');
+		unauthorized(
+			res,
+			'Você não tem permissão para esta ação!'
+		);
 		return;
 	}
 	try {
 		verifyToken(req.headers.authorization.split(' ')[1]);
 		next();
 	} catch (err) {
-		unauthorized(res, 'Error: access_token is not valid');
+		unauthorized(res, 'Token de acesso inválido');
 	}
 });
 
