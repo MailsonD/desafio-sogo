@@ -1,0 +1,23 @@
+.app-bar {
+    display: flex;
+    justify-content: flex-end;
+    height: 10vh;
+    width: 100vw;
+}
+
+.top-bar-logo {
+    height: 7vh;
+    margin-left: 10px;
+}
+
+.tool-bar {
+    height: 100vw;
+    justify-content: space-between;
+}
+
+.start-bar {
+    display: flex;
+    align-items: center;
+}
+
+

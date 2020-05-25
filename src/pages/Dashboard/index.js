@@ -1,19 +1,13 @@
 import React from 'react';
 import DashboardRoutes from './routes';
-import Button from '../../components/Button';
-import { useDispatch } from 'react-redux';
-import { logoutUser } from '../../store/Auth/auth.actions';
+import Topbar from '../../components/Topbar/Topbar.component';
+
+import './style.css';
 
 function Dashboard() {
-	const dispatch = useDispatch();
-
-	function handleLogout() {
-		dispatch(logoutUser());
-	}
-
 	return (
-		<div>
-			<Button onClick={handleLogout}>Logout</Button>
+		<div className='dashboard'>
+			<Topbar />
 			<DashboardRoutes />
 		</div>
 	);

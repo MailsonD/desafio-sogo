@@ -9,7 +9,7 @@ import theme from './theme';
 import Router from './Router';
 
 import './global.css';
-import Toastr from './components/Toastr';
+import Toastr from './components/Toastr/Toastr.component';
 
 function App() {
 	return (
