@@ -1,0 +1,17 @@
+.form-register {
+    padding: 115px;
+    display: flex;
+    flex-direction: column;
+    align-content: space-between;
+}
+
+.form-register-title {
+    font-family: Roboto;
+    align-self: center;
+}
+
+@media only screen and (max-width: 768px) {
+    .form-register {
+        padding: 20px;
+    }    
+}

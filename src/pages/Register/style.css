@@ -1,0 +1,35 @@
+.main-register{
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-image: url('../../assets/register_img.svg');
+    background-position: center center;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+.register-form-box {
+    width: 100%;
+}
+
+.register-svg-box {
+    width: 100%;
+    height: 100%;
+}
+
+@media only screen and (max-width: 768px) {
+    .main-register {
+        background-image: url('../../assets/register_img_responsive.svg');
+        background-position: bottom right;
+        background-size: 50%;
+    }
+    
+    .register-svg-box {
+        width: 0px;
+        height: 0px;
+    }
+}
