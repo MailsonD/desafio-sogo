@@ -89,7 +89,7 @@ export function registerParticipant(participant) {
 						'Tente novamente depois'
 					);
 				}
-				dispatch(registerParticipantFailed(err.message));
+				dispatch(registerParticipantFailed());
 			});
 	};
 }
@@ -120,9 +120,8 @@ function registerParticipantSuccess() {
 	return { type: REGISTER_PARTICIPANT_SUCCESS };
 }
 
-function registerParticipantFailed(errorMessage) {
+function registerParticipantFailed() {
 	return {
 		type: REGISTER_PARTICIPANT_FAILED,
-		errorMessage,
 	};
 }

@@ -12,8 +12,14 @@ import {
 } from './course.constants';
 
 const initialValue = {
-	all: [],
-	teacherCouses: [],
+	all: {
+		lastFetch: null,
+		data: [],
+	},
+	teacherCouses: {
+		lastFetch: null,
+		data: [],
+	},
 	isFetching: false,
 	newCourse: {
 		isRequesting: false,
@@ -46,7 +52,10 @@ function fetchAllCoursesSuccess(state, action) {
 	return {
 		...state,
 		isFetching: false,
-		all: action.courses,
+		all: {
+			data: action.courses,
+			lastFetch: new Date(),
+		},
 	};
 }
 
@@ -68,7 +77,10 @@ function fetchTeacherCoursesSuccess(state, action) {
 	return {
 		...state,
 		isFetching: true,
-		teacherCourses: action.courses,
+		teacherCourses: {
+			data: action.courses,
+			lastFetch: new Date(),
+		},
 	};
 }
 
@@ -92,6 +104,10 @@ function newCourseRequest(state, action) {
 function newCourseSuccess(state, action) {
 	return {
 		...state,
+		teacherCourses: {
+			...state.teacherCourses,
+			data: [...state.teacherCourses.data, action.course],
+		},
 		newCourse: {
 			isRequesting: false,
 			success: true,
