@@ -5,6 +5,7 @@ import { Provider } from 'react-redux';
 import { persistor, store } from './store';
 
 import './global.css';
+import Toastr from './components/Toastr';
 
 function App() {
 	return (
@@ -14,6 +15,7 @@ function App() {
 					<Router />
 				</div>
 			</PersistGate>
+			<Toastr />
 		</Provider>
 	);
 }

@@ -12,7 +12,6 @@ import {
 
 const initialState = {
 	isRequesting: false,
-	error: null,
 	success: false,
 };
 
@@ -30,25 +29,19 @@ export const teacher = createReducer(initialState, {
 function newRequest(state, action) {
 	return {
 		isRequesting: true,
-		error: null,
 		success: false,
 	};
 }
 
 function newRequestSuccess(state, action) {
 	return {
-		...state,
 		isRequesting: false,
 		success: true,
 	};
 }
 
 function newRequestFailed(state, action) {
-	return {
-		...state,
-		isRequesting: false,
-		error: action.errorMessage,
-	};
+	return initialState;
 }
 
 function resetRequest(state, action) {

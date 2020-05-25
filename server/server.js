@@ -36,19 +36,22 @@ server.post('/api/v1/auth/login', async (req, res) => {
 		console.log(indexParticipant);
 
 		let role;
+		let id;
 		if (indexParticipant !== -1) {
 			role = 'PARTICIPANT';
+			id = dbJson.participant[indexParticipant].id;
 		} else {
 			const indexTeacher = dbJson.teacher.findIndex(
 				(t) => t.email === email
 			);
 			if (indexTeacher !== -1) {
 				role = 'TEACHER';
+				id = dbJson.teacher[indexTeacher].id;
 			}
 		}
 
-		const token = createToken({ email, password });
-		res.status(200).json({ token, role });
+		const token = createToken({ role, id });
+		res.status(200).json({ token });
 	});
 });
 

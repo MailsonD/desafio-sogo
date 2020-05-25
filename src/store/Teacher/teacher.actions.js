@@ -1,3 +1,4 @@
+import { toastr } from 'react-redux-toastr';
 import api from '../../services/api';
 import {
 	NEW_COURSE_FAILED,
@@ -21,12 +22,16 @@ export function newTeacher(teacher) {
 				},
 			})
 			.then(() => {
+				toastr.success(
+					'Sucesso :)',
+					'Novo professor cadastrado com sucesso!'
+				);
 				dispatch({ type: NEW_TEACHER_SUCCESS });
 			})
 			.catch((err) => {
+				toastr.error('Um erro aconteceu :(', err.message);
 				dispatch({
 					type: NEW_TEACHER_FAILED,
-					errorMessage: err.message,
 				});
 			});
 	};
@@ -43,12 +48,16 @@ export function newCourse(course) {
 				},
 			})
 			.then(() => {
+				toastr.success(
+					'Sucesso :)',
+					'Minicurso cadastrado com sucesso!'
+				);
 				dispatch({ type: NEW_COURSE_SUCCESS });
 			})
 			.catch((err) => {
+				toastr.error('Um erro aconteceu :(', err.message);
 				dispatch({
 					type: NEW_COURSE_FAILED,
-					errorMessage: err.message,
 				});
 			});
 	};

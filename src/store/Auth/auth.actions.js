@@ -1,4 +1,6 @@
 import api from '../../services/api';
+import { toastr } from 'react-redux-toastr';
+import jwtDecode from 'jwt-decode';
 import {
 	LOGIN_FAILED,
 	LOGIN_REQUEST,
@@ -19,9 +21,21 @@ export function loginUser(email, password) {
 		return api
 			.post('/auth/login', { email, password })
 			.then((res) => {
-				dispatch(loginSuccess(res.data));
+				toastr.success(
+					'Sucesso!',
+					'login realizado com sucesso!'
+				);
+				const decoded = jwtDecode(res.data.token);
+				dispatch(
+					loginSuccess({
+						token: res.data.token,
+						id: decoded.id,
+						role: decoded.role,
+					})
+				);
 			})
 			.catch((err) => {
+				toastr.error('Uma falha ocorreu :(', err.message);
 				dispatch(loginFailed(err.message));
 			});
 	};
@@ -39,9 +53,21 @@ export function registerParticipant(participant) {
 		api
 			.post('/auth/register', participant)
 			.then((res) => {
-				dispatch(registerParticipantSuccess(res.data));
+				toastr.success(
+					'Sucesso!',
+					'Cadastro realizado com sucesso!'
+				);
+				const decoded = jwtDecode(res.data.token);
+				dispatch(
+					registerParticipantSuccess({
+						token: res.data.token,
+						id: decoded.id,
+						role: decoded.role,
+					})
+				);
 			})
 			.catch((err) => {
+				toastr.error('Uma falha ocorreu :(', err.message);
 				dispatch(registerParticipantFailed(err.message));
 			});
 	};
