@@ -29,7 +29,17 @@ export function newTeacher(teacher) {
 				dispatch({ type: NEW_TEACHER_SUCCESS });
 			})
 			.catch((err) => {
-				toastr.error('Um erro aconteceu :(', err.message);
+				if (err.response && err.response.data) {
+					toastr.error(
+						'Uma falha ocorreu :(',
+						err.response.data.message
+					);
+				} else {
+					toastr.error(
+						'Uma falha ocorreu :(',
+						'Tente novamente depois'
+					);
+				}
 				dispatch({
 					type: NEW_TEACHER_FAILED,
 				});
@@ -55,7 +65,17 @@ export function newCourse(course) {
 				dispatch({ type: NEW_COURSE_SUCCESS });
 			})
 			.catch((err) => {
-				toastr.error('Um erro aconteceu :(', err.message);
+				if (err.response && err.response.data) {
+					toastr.error(
+						'Uma falha ocorreu :(',
+						err.response.data.message
+					);
+				} else {
+					toastr.error(
+						'Uma falha ocorreu :(',
+						'Tente novamente depois'
+					);
+				}
 				dispatch({
 					type: NEW_COURSE_FAILED,
 				});

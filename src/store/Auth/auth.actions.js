@@ -53,7 +53,7 @@ export function loginUser(email, password) {
 }
 
 export function logoutUser() {
-	localStorage.removeItem('token');
+	localStorage.clear();
 	return { type: LOGOUT_REQUEST };
 }
 
@@ -108,7 +108,7 @@ function loginFailed() {
 }
 
 function loginSuccess(authInfo) {
-	localStorage.setItem('token', authInfo.token);
+	localStorage.setItem('token', `Bearer ${authInfo.token}`);
 	return { type: LOGIN_SUCCESS, authInfo };
 }
 
