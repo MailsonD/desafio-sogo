@@ -6,9 +6,11 @@ import Form from './Form';
 
 function Login() {
 	return (
-		<div>
-			<p>Login Page</p>
-			<Form />
+		<div className='main-login'>
+			<div className='login-form-box'>
+				<Form />
+			</div>
+			<div className='login-svg-box'></div>
 		</div>
 	);
 }

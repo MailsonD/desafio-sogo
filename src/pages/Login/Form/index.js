@@ -1,24 +1,28 @@
 import React, { useEffect } from 'react';
-import Button from '../../../components/Button';
-import Input from '../../../components/Input';
 
-import './style.css';
 import { useFormik } from 'formik';
 import { useSelector, useDispatch } from 'react-redux';
 import { loginUser } from '../../../store/Auth/auth.actions';
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
+import { TextField, Button } from '@material-ui/core';
+
+import logo from '../../../assets/logo.png';
+import './style.css';
 
 function Form() {
 	const dispatch = useDispatch();
 	const history = useHistory();
 	const auth = useSelector((state) => state.auth);
-	const state = useSelector((state) => state);
 
 	useEffect(() => {
 		if (auth.isAuthenticated) {
 			history.push('dashboard');
 		}
 	}, [auth.isAuthenticated]);
+
+	function goToRegister() {
+		history.push('/register');
+	}
 
 	const formik = useFormik({
 		initialValues: {
@@ -33,36 +37,47 @@ function Form() {
 	});
 
 	return (
-		<>
-			<form
-				className='form-login'
-				onSubmit={formik.handleSubmit}>
-				<Input
-					name='email'
-					type='email'
-					title='Email'
-					onChange={formik.handleChange}
-					value={formik.values.email}
-				/>
-				<Input
-					name='password'
-					type='password'
-					title='Senha'
-					error='asasd'
-					onChange={formik.handleChange}
-					value={formik.values.password}
-				/>
-				<Button type='submit'>Login</Button>
-			</form>
+		<form
+			onSubmit={formik.handleSubmit}
+			className='form-login'>
+			<img src={logo} alt='Coursy' className='logo' />
+
 			<br />
-			<Link to='/register'>Cadastro</Link>
+			<TextField
+				name='email'
+				type='email'
+				label='Email'
+				variant='outlined'
+				error={Boolean(formik.errors.email)}
+				helperText={formik.errors.email}
+				onChange={formik.handleChange}
+				value={formik.values.email}
+			/>
+			<br />
+			<TextField
+				name='password'
+				type='password'
+				label='Senha'
+				variant='outlined'
+				error={formik.errors.password}
+				onChange={formik.handleChange}
+				value={formik.values.password}
+			/>
 			<br />
 			<Button
-				onClick={() => {
-					console.log(state);
-				}}
-			/>
-		</>
+				variant='contained'
+				color='primary'
+				type='submit'>
+				Login
+			</Button>
+			<br />
+			<Button
+				type='button'
+				variant='text'
+				onClick={goToRegister}>
+				CADASTRE-SE
+			</Button>
+		</form>
 	);
 }
 
