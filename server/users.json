@@ -27,6 +27,16 @@
             "id": 5,
             "email": "marcos@gmail.com",
             "password": "123"
+        },
+        {
+            "id": 6,
+            "email": "den@gmail.com",
+            "password": "321"
+        },
+        {
+            "id": 7,
+            "email": "den2@gmail.com",
+            "password": "321"
         }
     ]
 }

@@ -53,6 +53,20 @@
             "email": "ricardo.job@gmail.com",
             "password": "jobiando",
             "registration": "20161501230"
+        },
+        {
+            "id": 2,
+            "email": "den@gmail.com",
+            "name": "den",
+            "password": "321",
+            "registration": "201712312"
+        },
+        {
+            "id": 3,
+            "email": "den2@gmail.com",
+            "name": "den2",
+            "password": "321",
+            "registration": "2017111"
         }
     ],
     "participant": [

@@ -119,8 +119,8 @@ server.post('/api/v1/auth/register', (req, res) => {
 
 		let dataArray;
 		let last_item_id;
-		if (req.body.register) {
-			dataArray = dbJson;
+		if (req.body.registration) {
+			dataArray = dbJson.teacher;
 			last_item_id = dataArray[dataArray.length - 1].id;
 
 			dataArray.push({
