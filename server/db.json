@@ -47,6 +47,9 @@
         },
         {
           "id": 4
+        },
+        {
+          "id": 1
         }
       ],
       "teacher": 2
@@ -70,7 +73,12 @@
       "duration": "22 hours",
       "vacancies": 5,
       "teacher": 4,
-      "id": 9
+      "id": 9,
+      "registrations": [
+        {
+          "id": 1
+        }
+      ]
     },
     {
       "name": "Curseu",
@@ -78,7 +86,25 @@
       "duration": "2 hours",
       "vacancies": 30,
       "teacher": 4,
-      "id": 10
+      "id": 10,
+      "registrations": [
+        {
+          "id": 1
+        }
+      ]
+    },
+    {
+      "name": "Cursoneu",
+      "realization_date": "2020-05-31T11:00:00.000Z",
+      "duration": "2 hours",
+      "vacancies": 3,
+      "teacher": 4,
+      "id": 11,
+      "registrations": [
+        {
+          "id": 1
+        }
+      ]
     }
   ],
   "teacher": [

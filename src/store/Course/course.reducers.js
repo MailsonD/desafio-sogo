@@ -170,13 +170,23 @@ function newRegistrationSuccess(state, action) {
 			lastFetch: state.all.lastFetch,
 			data: state.all.data.map((c) => {
 				if (c.id === action.courseId) {
-					return {
-						...c,
-						registrations: [
-							...c.registrations,
-							{ id: action.userId },
-						],
-					};
+					if (
+						c.registrations &&
+						c.registrations.lenght > 0
+					) {
+						return {
+							...c,
+							registrations: [
+								...c.registrations,
+								{ id: action.userId },
+							],
+						};
+					} else {
+						return {
+							...c,
+							registrations: [{ id: action.userId }],
+						};
+					}
 				}
 				return c;
 			}),
