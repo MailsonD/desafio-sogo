@@ -1,12 +1,9 @@
 import React from 'react';
 
+import ParticipantRoutes from './routes';
+
 function ParticipantDashboard() {
-	console.log('participant');
-	return (
-		<>
-			<p>participant</p>
-		</>
-	);
+	return <ParticipantRoutes />;
 }
 
 export default ParticipantDashboard;
