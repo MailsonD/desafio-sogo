@@ -12,6 +12,10 @@ O projeto foi feito utilizando as tecnologias React, Redux e Material-UI para a 
 
 ### Como iniciar
 
+Inicialmente instale as dependências do projeto com o comando na raíz do projeto
+
+### `npm install`
+
 O projeto funciona como um front-end que consome seus dados de uma API, e para funcionamento devemos iniciar a simulação da api com o comando
 
 ### `npm run start-api`
