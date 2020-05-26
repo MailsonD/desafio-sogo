@@ -1,0 +1,54 @@
+.card-box {
+    width: 350px;
+    display: flex;
+    margin-top: 20px;
+    flex-direction: column;
+    font-family: Roboto;
+}
+
+.card-top {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.card-date {
+    opacity: 0.5;
+}
+
+.vacations {
+    font-size: 13px;
+}
+
+.card-bottom {
+    display: flex;
+    flex-direction: column;
+}
+
+.card-actions {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    flex-direction: row;
+    justify-content: space-between;
+
+}
+
+.course-avaliable {
+    color: #03C603;
+}
+
+.course-full {
+    color: #C60303;
+}
+
+.registred {
+    margin-right: 10px;
+}
+
+@media only screen and (max-width: 768px) {
+    .card-box {
+        width: 270px;
+    }
+}
+
+

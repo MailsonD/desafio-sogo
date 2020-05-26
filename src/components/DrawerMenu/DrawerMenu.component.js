@@ -15,6 +15,7 @@ import { toogleMenu } from '../../store/Menu/menu.actions';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
+import { useHistory } from 'react-router-dom';
 
 function DrawerMenu() {
 	const dispatch = useDispatch();
@@ -58,21 +59,35 @@ function DrawerMenu() {
 }
 
 function TeacherRoutes() {
+	const handleRedirect = useRedirect();
+
 	return (
 		<List>
-			<ListItem button>
+			<ListItem
+				button
+				onClick={() =>
+					handleRedirect('/dashboard/teacher/courses')
+				}>
 				<ListItemIcon>
 					<InboxIcon />
 				</ListItemIcon>
 				<ListItemText primary={'Meus minicursos'} />
 			</ListItem>
-			<ListItem button>
+			<ListItem
+				button
+				onClick={() =>
+					handleRedirect('/dashboard/teacher/register')
+				}>
 				<ListItemIcon>
 					<InboxIcon />
 				</ListItemIcon>
 				<ListItemText primary={'Novo Professor'} />
 			</ListItem>
-			<ListItem button>
+			<ListItem
+				button
+				onClick={() =>
+					handleRedirect('/dashboard/teacher/courses/new')
+				}>
 				<ListItemIcon>
 					<InboxIcon />
 				</ListItemIcon>
@@ -83,15 +98,29 @@ function TeacherRoutes() {
 }
 
 function ParticipantRoutes() {
+	const handleRedirect = useRedirect();
+
 	return (
 		<List>
-			<ListItem button>
+			<ListItem
+				button
+				onClick={() =>
+					handleRedirect(
+						'/dashboard/participant/courses/all'
+					)
+				}>
 				<ListItemIcon>
 					<InboxIcon />
 				</ListItemIcon>
 				<ListItemText primary={'Minicursos disponíveis'} />
 			</ListItem>
-			<ListItem button>
+			<ListItem
+				button
+				onClick={() =>
+					handleRedirect(
+						'/dashboard/participant/courses/registred'
+					)
+				}>
 				<ListItemIcon>
 					<InboxIcon />
 				</ListItemIcon>
@@ -99,6 +128,16 @@ function ParticipantRoutes() {
 			</ListItem>
 		</List>
 	);
+}
+
+function useRedirect() {
+	const history = useHistory();
+
+	function handleRedirect(route) {
+		history.push(route);
+	}
+
+	return handleRedirect;
 }
 
 export default DrawerMenu;

@@ -8,3 +8,7 @@ export function formatIntervalFromDate(start, end) {
 
 	return `${duration.hours} hours`;
 }
+
+export function formatDurationToBr(duration) {
+	return duration.replace('hours', 'horas');
+}

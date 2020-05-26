@@ -9,6 +9,9 @@ import {
 	FETCH_ALL_COURSES_FAILED,
 	FETCH_TEACHER_COURSES_FAILED,
 	NEW_COURSES_FAILED,
+	NEW_REGISTRATION_FAILED,
+	NEW_REGISTRATION_REQUEST,
+	NEW_REGISTRATION_SUCCESS,
 } from './course.constants';
 
 const initialValue = {
@@ -19,6 +22,10 @@ const initialValue = {
 	teacherCouses: {
 		lastFetch: null,
 		data: [],
+	},
+	registring: {
+		isRegistring: false,
+		course: null,
 	},
 	isFetching: false,
 	newCourse: {
@@ -39,6 +46,10 @@ export const courses = createReducer(initialValue, {
 	[NEW_COURSES_REQUEST]: newCourseRequest,
 	[NEW_COURSES_SUCCESS]: newCourseSuccess,
 	[NEW_COURSES_FAILED]: newCourseFailed,
+
+	[NEW_REGISTRATION_REQUEST]: newRegistrationRequest,
+	[NEW_REGISTRATION_SUCCESS]: newRegistrationSuccess,
+	[NEW_REGISTRATION_FAILED]: newRegistrationFailed,
 });
 
 function fetchAllCourses(state, action) {
@@ -121,6 +132,52 @@ function newCourseFailed(state, action) {
 		newCourse: {
 			isRequesting: false,
 			succes: false,
+		},
+	};
+}
+
+function newRegistrationRequest(state, action) {
+	return {
+		...state,
+		registring: {
+			isRegistring: true,
+			course: action.courseId,
+		},
+	};
+}
+
+function newRegistrationSuccess(state, action) {
+	console.log('epa');
+	return {
+		...state,
+		registring: {
+			isRegistring: false,
+			course: null,
+		},
+		all: {
+			lastFetch: state.all.lastFetch,
+			data: state.all.data.map((c) => {
+				if (c.id === action.courseId) {
+					return {
+						...c,
+						registrations: [
+							...c.registrations,
+							{ id: action.userId },
+						],
+					};
+				}
+				return c;
+			}),
+		},
+	};
+}
+
+function newRegistrationFailed(state, action) {
+	return {
+		...state,
+		registring: {
+			isRegistring: false,
+			course: null,
 		},
 	};
 }

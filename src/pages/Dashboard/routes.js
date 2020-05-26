@@ -16,7 +16,6 @@ function DashboardRoutes() {
 	}
 
 	function testRoleAndRedirect(role, Component) {
-		console.log(userRole);
 		const redirect = () => {
 			return role === userRole ? (
 				<Component />

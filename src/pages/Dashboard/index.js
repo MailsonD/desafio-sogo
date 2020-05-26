@@ -11,7 +11,9 @@ function Dashboard() {
 			<Topbar />
 			<div className='content'>
 				<DrawerMenu />
-				<DashboardRoutes />
+				<div className='rigth-content'>
+					<DashboardRoutes />
+				</div>
 			</div>
 		</div>
 	);
