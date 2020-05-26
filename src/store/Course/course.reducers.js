@@ -12,6 +12,7 @@ import {
 	NEW_REGISTRATION_FAILED,
 	NEW_REGISTRATION_REQUEST,
 	NEW_REGISTRATION_SUCCESS,
+	NEW_COURSES_RESET,
 } from './course.constants';
 
 const initialValue = {
@@ -46,6 +47,7 @@ export const courses = createReducer(initialValue, {
 	[NEW_COURSES_REQUEST]: newCourseRequest,
 	[NEW_COURSES_SUCCESS]: newCourseSuccess,
 	[NEW_COURSES_FAILED]: newCourseFailed,
+	[NEW_COURSES_RESET]: newCourseReset,
 
 	[NEW_REGISTRATION_REQUEST]: newRegistrationRequest,
 	[NEW_REGISTRATION_SUCCESS]: newRegistrationSuccess,
@@ -131,7 +133,17 @@ function newCourseFailed(state, action) {
 		...state,
 		newCourse: {
 			isRequesting: false,
-			succes: false,
+			success: false,
+		},
+	};
+}
+
+function newCourseReset(state, action) {
+	return {
+		...state,
+		newCouse: {
+			isRequesting: false,
+			success: false,
 		},
 	};
 }

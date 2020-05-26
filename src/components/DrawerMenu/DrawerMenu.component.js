@@ -13,9 +13,10 @@ import clsx from 'clsx';
 import useStyles from './style';
 import { toogleMenu } from '../../store/Menu/menu.actions';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
 import ListAltIcon from '@material-ui/icons/ListAlt';
 import PlaylistAddCheckIcon from '@material-ui/icons/PlaylistAddCheck';
+import CreateIcon from '@material-ui/icons/Create';
+import AssignmentIndIcon from '@material-ui/icons/AssignmentInd';
 import { useHistory } from 'react-router-dom';
 
 function DrawerMenu() {
@@ -70,7 +71,7 @@ function TeacherRoutes() {
 					handleRedirect('/dashboard/teacher/courses')
 				}>
 				<ListItemIcon>
-					<InboxIcon />
+					<ListAltIcon />
 				</ListItemIcon>
 				<ListItemText primary={'Meus minicursos'} />
 			</ListItem>
@@ -80,7 +81,7 @@ function TeacherRoutes() {
 					handleRedirect('/dashboard/teacher/register')
 				}>
 				<ListItemIcon>
-					<InboxIcon />
+					<AssignmentIndIcon />
 				</ListItemIcon>
 				<ListItemText primary={'Novo Professor'} />
 			</ListItem>
@@ -90,7 +91,7 @@ function TeacherRoutes() {
 					handleRedirect('/dashboard/teacher/courses/new')
 				}>
 				<ListItemIcon>
-					<InboxIcon />
+					<CreateIcon />
 				</ListItemIcon>
 				<ListItemText primary={'Novo Minicurso'} />
 			</ListItem>

@@ -13,6 +13,7 @@ import {
 	NEW_REGISTRATION_FAILED,
 	NEW_REGISTRATION_REQUEST,
 	NEW_REGISTRATION_SUCCESS,
+	NEW_COURSES_RESET,
 } from './course.constants';
 import { formatIntervalFromDate } from '../../util/interval-format';
 
@@ -58,13 +59,22 @@ export function newCourse(course) {
 		dispatch({ type: NEW_COURSES_REQUEST });
 		console.log('apa');
 		const { id } = getState().auth;
+		const interval = formatIntervalFromDate(
+			course.realization_date,
+			course.duration
+		);
+		if (!interval) {
+			toastr.error(
+				'Uma falha ocorreu :(',
+				'O fim do curso não pode acontecer antes do início'
+			);
+			dispatch({ type: NEW_COURSES_FAILED });
+			return;
+		}
 		const courseData = {
 			...course,
 			teacher: id,
-			duration: formatIntervalFromDate(
-				course.realization_date,
-				course.duration
-			),
+			duration: interval,
 		};
 		console.log(courseData);
 		api
@@ -98,6 +108,10 @@ export function newCourse(course) {
 				dispatch({ type: NEW_COURSES_FAILED });
 			});
 	};
+}
+
+export function newCourseReset() {
+	return { type: NEW_COURSES_RESET };
 }
 
 export function fetchAllCourses() {
