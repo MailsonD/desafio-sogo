@@ -1,0 +1,26 @@
+.new-teacher {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.new-teacher-box {
+    width: 40vw;
+}
+
+.new-teacher-form {
+    display: flex;
+    flex-direction: column;
+    height: 80vh;
+    justify-content: center;
+}
+
+.title {
+    justify-self: center;
+}
+
+@media only screen and (max-width: 768px) {
+    .new-teacher-box {
+        width: 90%;
+    }
+}

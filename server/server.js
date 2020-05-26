@@ -9,7 +9,7 @@ const jwt = require('jsonwebtoken');
 const server = jsonServer.create();
 const router = jsonServer.router('./server/db.json');
 
-const userdb = JSON.parse(
+let userdb = JSON.parse(
 	fs.readFileSync('./server/users.json', 'UTF-8')
 );
 
@@ -20,6 +20,8 @@ server.use(bodyParser.json());
 
 server.post('/api/v1/auth/login', (req, res) => {
 	const { email, password } = req.body;
+	reloadDatabase();
+
 	if (!isAuthenticated({ email, password })) {
 		unauthorized(res, 'Email ou senha incorretos');
 		return;
@@ -52,6 +54,12 @@ server.post('/api/v1/auth/login', (req, res) => {
 		res.status(200).json({ token });
 	});
 });
+
+function reloadDatabase() {
+	userdb = JSON.parse(
+		fs.readFileSync('./server/users.json', 'UTF-8')
+	);
+}
 
 function createToken(payload) {
 	return jwt.sign(payload, SECRET_KEY, { expiresIn });
