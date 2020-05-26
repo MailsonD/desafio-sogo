@@ -71,11 +71,13 @@ function registerFailed(state, action) {
 }
 
 function registerParticipantSuccess(state, action) {
+	console.log(action);
 	return {
 		...state,
 		isRegistring: false,
 		id: action.authInfo.id,
 		token: action.authInfo.token,
 		role: action.authInfo.role,
+		isAuthenticated: true,
 	};
 }

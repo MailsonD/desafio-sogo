@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useFormik } from 'formik';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { registerParticipant } from '../../../store/Auth/auth.actions';
 import { TextField, Button } from '@material-ui/core';
+import * as Yup from 'yup';
 
 import './style.css';
 import { useHistory } from 'react-router-dom';
@@ -10,6 +11,13 @@ import { useHistory } from 'react-router-dom';
 function Form() {
 	const dispatch = useDispatch();
 	const history = useHistory();
+	const auth = useSelector((state) => state.auth);
+
+	useEffect(() => {
+		if (auth.isAuthenticated) {
+			history.push('dashboard');
+		}
+	}, [auth.isAuthenticated]);
 
 	function goBack() {
 		history.goBack();
@@ -22,6 +30,23 @@ function Form() {
 			password: '',
 			confirmPassword: '',
 		},
+		validationSchema: Yup.object({
+			email: Yup.string()
+				.email('Digite um e-mail válido')
+				.required('Preencha o campo de e-mail'),
+			name: Yup.string()
+				.min(3, 'O nome deve ter no mínimo 3 caracteres')
+				.required('Preencha o campo de nome'),
+			password: Yup.string()
+				.min(3, 'A senha deve ter no mínimo 3 caracteres')
+				.required('Preencha o campo de senha'),
+			confirmPassword: Yup.string()
+				.oneOf(
+					[Yup.ref('password'), null],
+					'As senhas são diferentes'
+				)
+				.required('preencha a confirmação de senha'),
+		}),
 		onSubmit: (values) => {
 			const participant = { ...values };
 			delete participant.confirmPassword;

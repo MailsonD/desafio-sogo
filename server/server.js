@@ -121,6 +121,7 @@ server.post('/api/v1/auth/register', (req, res) => {
 	let failed = false;
 
 	let role;
+	let id;
 
 	fs.readFile('./server/db.json', (err, data) => {
 		if (err) {
@@ -145,6 +146,7 @@ server.post('/api/v1/auth/register', (req, res) => {
 			dbJson.teacher = dataArray;
 
 			role = 'TEACHER';
+			id = last_item_id + 1;
 		} else {
 			dataArray = dbJson.participant;
 			last_item_id = dataArray[dataArray.length - 1].id;
@@ -157,6 +159,7 @@ server.post('/api/v1/auth/register', (req, res) => {
 			dbJson.participant = dataArray;
 
 			role = 'PARTICIPANT';
+			id = last_item_id + 1;
 		}
 
 		fs.writeFile(
@@ -171,6 +174,9 @@ server.post('/api/v1/auth/register', (req, res) => {
 				}
 			}
 		);
+
+		const token = createToken({ role, id });
+		res.status(200).json({ token });
 	});
 
 	if (failed) {
@@ -207,14 +213,7 @@ server.post('/api/v1/auth/register', (req, res) => {
 			}
 		);
 	});
-
-	if (failed) {
-		return;
-	}
 	// Create token for new user
-	const access_token = createToken({ email, password });
-	console.log('Access Token:' + access_token);
-	res.status(200).json({ access_token, role });
 });
 
 server.use(/^(?!\/api\/v1\/auth).*$/, (req, res, next) => {

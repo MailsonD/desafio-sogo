@@ -75,6 +75,7 @@ export function registerParticipant(participant) {
 					'Cadastro realizado com sucesso!'
 				);
 				const decoded = jwtDecode(res.data.token);
+				console.log(decoded);
 				dispatch(
 					registerParticipantSuccess({
 						token: res.data.token,
@@ -84,6 +85,7 @@ export function registerParticipant(participant) {
 				);
 			})
 			.catch((err) => {
+				console.log(err);
 				if (err.response && err.response.data) {
 					toastr.error(
 						'Uma falha ocorreu :(',
@@ -122,8 +124,9 @@ function registerParticipantRequest() {
 	return { type: REGISTER_PARTICIPANT_REQUEST };
 }
 
-function registerParticipantSuccess() {
-	return { type: REGISTER_PARTICIPANT_SUCCESS };
+function registerParticipantSuccess(authInfo) {
+	localStorage.setItem('token', `Bearer ${authInfo.token}`);
+	return { type: REGISTER_PARTICIPANT_SUCCESS, authInfo };
 }
 
 function registerParticipantFailed() {

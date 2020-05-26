@@ -14,7 +14,8 @@ import useStyles from './style';
 import { toogleMenu } from '../../store/Menu/menu.actions';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
+import ListAltIcon from '@material-ui/icons/ListAlt';
+import PlaylistAddCheckIcon from '@material-ui/icons/PlaylistAddCheck';
 import { useHistory } from 'react-router-dom';
 
 function DrawerMenu() {
@@ -110,7 +111,7 @@ function ParticipantRoutes() {
 					)
 				}>
 				<ListItemIcon>
-					<InboxIcon />
+					<ListAltIcon />
 				</ListItemIcon>
 				<ListItemText primary={'Minicursos disponíveis'} />
 			</ListItem>
@@ -122,7 +123,7 @@ function ParticipantRoutes() {
 					)
 				}>
 				<ListItemIcon>
-					<InboxIcon />
+					<PlaylistAddCheckIcon />
 				</ListItemIcon>
 				<ListItemText primary={'Minhas inscrições'} />
 			</ListItem>
