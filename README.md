@@ -1,68 +1,59 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Coursys
 
-## Available Scripts
+![logo](src/assets/logo.png)
 
-In the project directory, you can run:
+## Projeto
+
+Este projeto consiste em uma plataforma de minicursos para alunos e professores onde professores podem cadastrar seus minicursos para que qualquer aluno possa participar.
+
+Este projeto também foi feito como desafio para a empresa SOGO.
+
+O projeto foi feito utilizando as tecnologias React, Redux e Material-UI para a construção das interfaces e interação com usuário, além de json-server para simulação de API.
+
+### Como iniciar
+
+O projeto funciona como um front-end que consome seus dados de uma API, e para funcionamento devemos iniciar a simulação da api com o comando
+
+### `npm run start-api`
+
+Para isso tenha certeza de liberar a porta 8080 de sua máquina para o json-server funcionar sem problemas.
+
+Após iniciarmos a API podemos iniciar a aplicação com o comando
 
 ### `npm start`
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+<hr/>
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+## Papeis
 
-### `npm test`
+O sistema possui dois papeis funcionais, sendo eles Professor e participante. Ambos possuem suas próprias funcionalidades.
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Os participantes podem se cadastrar livremente a partir da tela de cadastro, cujo link se encontra na página de login.
 
-### `npm run build`
+Já os professores só podem ser cadastrados por outros professores.
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Login Padrão
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+Existem dois usuários de teste, um para cada papel mencionado anteriormente, sendo eles:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Professor
 
-### `npm run eject`
+####`Email: ricardo.job@gmail.com`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+####`Senha: jobiando`
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Aluno
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+####`Email: mailson@gmail.com`
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+####`Senha: 123`
 
-## Learn More
+<hr/>
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+###Logo
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+A logo deste sistema foi criada por Felipe Irnyo.
 
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+Email: felipeirnyo30@gmail.com
+Linkedin: https://www.linkedin.com/in/felipe-irnyo-b393a1189/
+Artstation: https://www.artstation.com/felipeirnyo/profile
