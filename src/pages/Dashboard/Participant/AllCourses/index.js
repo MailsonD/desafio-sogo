@@ -6,7 +6,7 @@ import './style.css';
 function AllCourses() {
 	return (
 		<div>
-			<p>All courses</p>
+			<h1 className='title'>Cursos disponíveis</h1>
 			<CourseList />
 		</div>
 	);

@@ -19,13 +19,15 @@ function CourseList() {
 	}, []);
 
 	return (
-		<div className='course-list'>
-			{all.data.length !== 0 && isFetching ? (
-				<CircularProgress />
-			) : (
-				<ListCards data={all.data} />
-			)}
-		</div>
+		<>
+			<div className='course-list'>
+				{all.data.length !== 0 && isFetching ? (
+					<CircularProgress />
+				) : (
+					<ListCards data={all.data} />
+				)}
+			</div>
+		</>
 	);
 }
 
