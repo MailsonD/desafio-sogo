@@ -87,7 +87,7 @@ function fetchTeacherCourses(state, action) {
 function fetchTeacherCoursesSuccess(state, action) {
 	return {
 		...state,
-		isFetching: true,
+		isFetching: false,
 		teacherCourses: {
 			data: action.courses,
 			lastFetch: new Date(),

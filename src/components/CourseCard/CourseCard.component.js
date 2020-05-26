@@ -69,19 +69,23 @@ function CourseCard(props) {
 						{formatDurationToBr(props.data.duration)}
 					</span>
 				</div>
-				{!isRegistred ? (
-					<Button
-						variant='contained'
-						color='primary'
-						onClick={handleRegistration}
-						disabled={
-							registrations === vacancies ||
-							registring.isRegistring
-						}>
-						Inscrever-se
-					</Button>
-				) : (
-					<h4 className='registred'>INSCRITO</h4>
+				{!props.teacher && (
+					<>
+						{!isRegistred ? (
+							<Button
+								variant='contained'
+								color='primary'
+								onClick={handleRegistration}
+								disabled={
+									registrations === vacancies ||
+									registring.isRegistring
+								}>
+								Inscrever-se
+							</Button>
+						) : (
+							<h4 className='registred'>INSCRITO</h4>
+						)}
+					</>
 				)}
 			</CardActions>
 		</Card>
