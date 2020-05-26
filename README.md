@@ -38,19 +38,19 @@ Existem dois usuários de teste, um para cada papel mencionado anteriormente, se
 
 ### Professor
 
-#### `Email: ricardo.job@gmail.com`
+`Email: ricardo.job@gmail.com`
 
-#### `Senha: jobiando`
+`Senha: jobiando`
 
 ### Aluno
 
-#### `Email: mailson@gmail.com`
+`Email: mailson@gmail.com`
 
-#### `Senha: 123`
+`Senha: 123`
 
 <hr/>
 
-###Logo
+### Logo
 
 A logo deste sistema foi criada por Felipe Irnyo.
 
