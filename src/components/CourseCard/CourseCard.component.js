@@ -6,11 +6,13 @@ import {
 	Button,
 } from '@material-ui/core';
 
-import './style.component.css';
+import isBefore from 'date-fns/isBefore';
 import { formatToBrLocale } from '../../util/data-format';
 import { formatDurationToBr } from '../../util/interval-format';
 import { useSelector, useDispatch } from 'react-redux';
 import { requestRegistration } from '../../store/Course/course.actions';
+
+import './style.component.css';
 
 function CourseCard(props) {
 	const dispatch = useDispatch();
@@ -27,6 +29,10 @@ function CourseCard(props) {
 	const [vacancies] = useState(props.data.vacancies);
 
 	const isRegistred = useRegistrationTest(props.data);
+
+	const isFromPast = useDataPastTest(
+		new Date(props.data.realization_date)
+	);
 
 	useEffect(() => {
 		console.log(registring);
@@ -71,19 +77,25 @@ function CourseCard(props) {
 				</div>
 				{!props.teacher && (
 					<>
-						{!isRegistred ? (
-							<Button
-								variant='contained'
-								color='primary'
-								onClick={handleRegistration}
-								disabled={
-									registrations === vacancies ||
-									registring.isRegistring
-								}>
-								Inscrever-se
-							</Button>
+						{isFromPast ? (
+							<h4 className='registred'>JÁ OCORREU</h4>
 						) : (
-							<h4 className='registred'>INSCRITO</h4>
+							<>
+								{!isRegistred ? (
+									<Button
+										variant='contained'
+										color='primary'
+										onClick={handleRegistration}
+										disabled={
+											registrations === vacancies ||
+											registring.isRegistring
+										}>
+										Inscrever-se
+									</Button>
+								) : (
+									<h4 className='registred'>INSCRITO</h4>
+								)}
+							</>
 						)}
 					</>
 				)}
@@ -112,6 +124,10 @@ function useRegistrationTest(course) {
 	}
 
 	return false;
+}
+
+function useDataPastTest(date) {
+	return isBefore(date, new Date());
 }
 
 export default CourseCard;

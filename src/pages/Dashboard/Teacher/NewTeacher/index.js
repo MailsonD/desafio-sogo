@@ -23,7 +23,7 @@ function NewTeacher() {
 			confirmPassword: '',
 			registration: '',
 		},
-		validationSchema: Yup.object({
+		validationSchema: Yup.object().shape({
 			email: Yup.string()
 				.email('Digite um e-mail válido')
 				.required('Preencha o campo de e-mail'),
